@@ -5,7 +5,16 @@ export interface DataItem {
   image: string;
   price: number;
   category: string;
-  count: number;
-  rate:  number;
-  rating:Object;
+  rating: {
+    rate: number;
+    count: number;
+  };
 }
+
+export type DataCategories = string[];
+
+export type DataRate = [
+  {
+    rate: string;
+  }
+];
