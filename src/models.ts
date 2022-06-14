@@ -12,9 +12,3 @@ export interface DataItem {
 }
 
 export type DataCategories = string[];
-
-export type DataRate = [
-  {
-    rate: string;
-  }
-];

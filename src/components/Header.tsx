@@ -11,9 +11,9 @@ const { useState, useTransition } = React;
 export const Header: React.FC = () => {
   const [search, setSearch] = useState("")
 
-  const handelSearch = () => {
+  // const handelSearch = () => {
 
-  }
+  // }
 
   return (
     <header className='header-page'>
@@ -33,9 +33,7 @@ export const Header: React.FC = () => {
             onChange={(e) => setSearch(e.target.value)}
           />
           <div className='search'>
-            <Link to="/"
-              aria-label='search'
-            >
+            <Link to={`/search/products/all/?=${search}`}>
               <FiSearch size={18} />
             </Link>
           </div>

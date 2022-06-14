@@ -17,7 +17,7 @@ export const Card: React.FC<Props> = ({ item }) => {
   return (
     <div className="card-item">
       <div className="card-body">
-        <Link to={`product/${pathName}/${pathCategory}/?=${item.id}`}>
+        <Link to={`/product/${pathName}/${pathCategory}/?=${item.id}`}>
           <div className="card-content">
             <div className="card-img">
               <img src={item.image ?? `https://via.placeholder.com/150`} alt="" width={"210px"} height={"220px"} />
