@@ -1,30 +1,33 @@
 import * as React from "react";
 
 import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
+
 import { dataAsync, selectData } from "../redux/counter/dataSlice";
+
+import { filtersData } from "../redux/counter/filterSlice";
 
 import { DataItem } from "../models";
 
-import { Loading } from "../components/Loading";
-import { Header } from "../components/Header";
-import { Card } from "../components/Card";
-import { Filter } from "../components/Filter";
+import { Loading, Header, Card, Filter } from "../components";
 
+
+// Hooks React
 const { useEffect } = React;
 
 export const Home: React.FC = () => {
-  const { data, loading } = useAppSelector(selectData);
+  const { loading } = useAppSelector(selectData);
+  const { filters } = useAppSelector(filtersData);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(dataAsync());
   }, [dispatch]);
 
+
   if (loading) {
     return <Loading />;
   }
 
-  console.log(data);
 
   return (
     <>
@@ -32,13 +35,20 @@ export const Home: React.FC = () => {
       <main className="main-page">
         <div className="container">
           <div className="products">
-            <div className="products-content">
-              {data.map((item: DataItem) => (
-                <div className="product-item" key={item.id}>
-                  <Card item={item} />
+            {
+              filters.length ?
+                <div className="products-content">
+                  {filters.map((item: DataItem) => (
+                    <div className="product-item" key={item.id}>
+                      <Card item={item} />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+                :
+                <h5>
+                  Not Found product
+                </h5>
+            }
           </div>
           <div className="products-filter">
             <Filter />

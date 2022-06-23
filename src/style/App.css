@@ -159,6 +159,13 @@ h6 {
   width: 77%;
 }
 
+.products h5 {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
 .products-content {
   display: flex;
   flex-wrap: wrap;
@@ -246,6 +253,27 @@ h6 {
   margin-left: 0.2rem;
 }
 
+/* section-Search */
+
+.section-search {
+  margin: 2rem 0;
+}
+
+.search-container {
+  max-width: 1250px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.search-products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.products-not-data {
+  text-align: center;
+}
 /* card-item */
 
 .card-item {

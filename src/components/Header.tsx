@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { RiShoppingCartLine, RiHeartLine } from "react-icons/ri"
 
@@ -9,11 +9,18 @@ import { FiSearch } from "react-icons/fi"
 const { useState, useTransition } = React;
 
 export const Header: React.FC = () => {
+  let navigate = useNavigate();
+
   const [search, setSearch] = useState("")
+
 
   // const handelSearch = () => {
 
   // }
+
+  const handelClickSearch = () => {
+    navigate(`/search/products/all/?=${search}`)
+  }
 
   return (
     <header className='header-page'>
@@ -33,9 +40,9 @@ export const Header: React.FC = () => {
             onChange={(e) => setSearch(e.target.value)}
           />
           <div className='search'>
-            <Link to={`/search/products/all/?=${search}`}>
+            <button className='btn' type={'button'} onClick={handelClickSearch} disabled={!search}>
               <FiSearch size={18} />
-            </Link>
+            </button>
           </div>
         </div>
         <div className='header-options'>
@@ -53,6 +60,6 @@ export const Header: React.FC = () => {
           </div>
         </div>
       </div>
-    </header>
+    </header >
   )
 }

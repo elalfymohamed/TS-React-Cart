@@ -3,6 +3,7 @@ import * as React from "react"
 import { useAppDispatch, useAppSelector } from "../../redux/app/hooks"
 
 import { categoriesAsync, selectData } from "../../redux/counter/categoriesSlice"
+import { filterCategory } from "../../redux/counter/filterSlice"
 
 import { DataCategories } from "../../models"
 
@@ -10,7 +11,7 @@ import { DataCategories } from "../../models"
 // Hooks React
 const { useEffect } = React;
 
-export const Categories = () => {
+export const Categories: React.FC = () => {
   const dispatch = useAppDispatch();
   const { categories } = useAppSelector(selectData)
 
@@ -29,7 +30,9 @@ export const Categories = () => {
             <label className="filter-category-label">
               <input type="checkbox" className="filter-category-input"
                 value={category}
-                onChange={() => { }}
+                onChange={(e) => {
+                  dispatch(filterCategory(e.target.value))
+                }}
               />
               <span className="filter-category-text">{category}</span>
             </label>

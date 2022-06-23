@@ -18,7 +18,7 @@ const Router: React.FC = () => {
       element: <Product />
     },
     {
-      path: "/search/products/all/:search",
+      path: "/search/products/all/",
       element: <Search />
     }
   ])

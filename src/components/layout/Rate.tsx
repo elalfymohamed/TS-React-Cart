@@ -1,10 +1,16 @@
 import * as React from "react";
 
+import { useAppDispatch } from "../../redux/app/hooks"
+import { filterRate } from "../../redux/counter/filterSlice";
+
 import { FaStar } from "react-icons/fa"
 
 
 export const Rate: React.FC = () => {
   const rate = [1, 2, 3, 4, 5] as number[];
+
+  const dispatch = useAppDispatch()
+
   return (
     <div className="rate-card">
       <div className="rate-container">
@@ -18,7 +24,7 @@ export const Rate: React.FC = () => {
                 <label className="filter-rate-label">
                   <input type="checkbox" className="filter-rate-input"
                     value={item}
-                    onChange={(e) => { console.log(e.target.value) }}
+                    onChange={(e) => { dispatch(filterRate(+e.target.value)) }}
                   />
                   <div className="count-star">
                     {item}
