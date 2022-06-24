@@ -1,13 +1,11 @@
-import { useRoutes } from "react-router-dom"
+import { useRoutes } from "react-router-dom";
 
 import { Home } from "../pages/Home";
 import { Product } from "../pages/Product";
+import { Products } from "../pages/Products";
 import { Search } from "../pages/Search";
 
-
-
 const Router: React.FC = () => {
-
   const routes = useRoutes([
     {
       path: "/",
@@ -15,13 +13,17 @@ const Router: React.FC = () => {
     },
     {
       path: "/product/:title/:id",
-      element: <Product />
+      element: <Product />,
+    },
+    {
+      path: "/products/:category",
+      element: <Products />,
     },
     {
       path: "/search/products/all/",
-      element: <Search />
-    }
-  ])
+      element: <Search />,
+    },
+  ]);
   return routes;
 };
 

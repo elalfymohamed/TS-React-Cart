@@ -5,11 +5,13 @@ import { RootState } from "../app/store";
 export interface Items {
   productData: {};
   loading: boolean;
+  error: string;
 }
 
 const initialState: Items = {
   productData: {},
   loading: false,
+  error: "",
 };
 
 export const productAsync = createAsyncThunk(
@@ -37,6 +39,9 @@ export const productSlice = createSlice({
       .addCase(productAsync.fulfilled, (state, action) => {
         state.productData = action.payload;
         state.loading = false;
+      })
+      .addCase(productAsync.rejected, (state) => {
+        state.error = "error server";
       });
   },
 });

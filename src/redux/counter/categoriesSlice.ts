@@ -4,11 +4,13 @@ import { RootState } from "../app/store";
 export interface Items {
   categories: [];
   loading: boolean;
+  error: string;
 }
 
 const initialState: Items = {
   categories: [],
   loading: false,
+  error: "",
 };
 
 export const categoriesAsync = createAsyncThunk(
@@ -36,6 +38,9 @@ export const categoriesSlice = createSlice({
       .addCase(categoriesAsync.fulfilled, (state, action) => {
         state.categories = action.payload;
         state.loading = false;
+      })
+      .addCase(categoriesAsync.rejected, (state) => {
+        state.error = "error server";
       });
   },
 });
