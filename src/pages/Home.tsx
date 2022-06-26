@@ -1,31 +1,15 @@
 import * as React from "react";
 
-import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
-
-import { dataAsync, selectData } from "../redux/counter/dataSlice";
+import { useAppSelector } from "../redux/app/hooks";
 
 import { filtersData } from "../redux/counter/filterSlice";
 
 import { DataItem } from "../models";
 
-import { Loading, Header, Card, Filter } from "../components";
-
-// Hooks React
-const { useEffect } = React;
+import { Header, Card, Filter } from "../components";
 
 export const Home: React.FC = () => {
-  const dispatch = useAppDispatch();
-
-  const { loading } = useAppSelector(selectData);
   const { filters } = useAppSelector(filtersData);
-
-  useEffect(() => {
-    dispatch(dataAsync());
-  }, [dispatch]);
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <>

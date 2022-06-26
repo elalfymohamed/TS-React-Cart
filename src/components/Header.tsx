@@ -1,14 +1,18 @@
 import * as React from "react";
 
 import { Link, useNavigate } from "react-router-dom";
-
+//  react icons
 import { RiShoppingCartLine, RiHeartLine } from "react-icons/ri";
-
 import { FiSearch } from "react-icons/fi";
+// redux
 import { selectData } from "../redux/counter/dataSlice";
 import { useAppSelector } from "../redux/app/hooks";
+// interface
 import { DataItem } from "../models";
+// layout
+import { ItemsSearch } from "./layout/ItemsSearch";
 
+// Hooks React
 const { useState, useTransition, useEffect } = React;
 
 export const Header: React.FC = () => {
@@ -26,7 +30,7 @@ export const Header: React.FC = () => {
   };
 
   useEffect(() => {
-    if (!search) return;
+    // if (search) return;
 
     const filterSearch = data.filter((item: DataItem) => {
       return (
@@ -68,14 +72,16 @@ export const Header: React.FC = () => {
               <FiSearch size={18} />
             </button>
           </div>
-          {!search && (
+          {search && (
             <div className="search-content">
               <div className="">
-                {isPending && <h3>loading</h3>}
+                {isPending && <h3>loading....</h3>}
 
-                <div>
+                <div className="items-search">
                   {filterTerm?.map((item: DataItem) => (
-                    <h4>{item.title}</h4>
+                    <div key={item.id}>
+                      <ItemsSearch item={item} />
+                    </div>
                   ))}
                 </div>
               </div>

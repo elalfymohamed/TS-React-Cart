@@ -29,6 +29,7 @@ export const Search: React.FC = () => {
       <Header />
       <section className="section-search">
         <div className="container">
+          <h6>items ({researchRes.length})</h6>
           {researchRes.length ? (
             <div className="search-products">
               {researchRes.map((item: DataItem) => (

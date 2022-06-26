@@ -30,7 +30,9 @@ export const Products = () => {
       <Header />
       <section className="section-products">
         <div className="container">
-          <h2>all products {category}</h2>
+          <h2>
+            all products {category} ({products.length})
+          </h2>
           <div className="products-category">
             {products.map((item: DataItem) => (
               <div className="product-item" key={item.id}>
