@@ -3,6 +3,7 @@ import dataSlice from "../counter/dataSlice";
 import categoriesSlice from "../counter/categoriesSlice";
 import productSlice from "../counter/productSlice";
 import filterSlice from "../counter/filterSlice";
+import userChoicesSlice from "../counter/userChoicesSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     categoriesSlice,
     productSlice,
     filterSlice,
+    userChoicesSlice,
   },
 });
 

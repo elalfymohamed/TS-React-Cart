@@ -7,8 +7,12 @@ interface Props {
 }
 
 export const ItemsSearch: React.FC<Props> = ({ item }) => {
-  const pathName = item.title.toLowerCase().replace(/ /g, "-");
-  const pathCategory = item.category.toLowerCase().replace(/ /g, "-");
+  const pathName = item.title
+    .toLowerCase()
+    .replace(/[.*+?^${}()/ |[\]\\]/g, "-");
+  const pathCategory = item.category
+    .toLowerCase()
+    .replace(/[.*+?^${}()/ |[\]\\]/g, "-");
   return (
     <Link
       to={`/product/${pathName}/${pathCategory}/?=${item.id}`}

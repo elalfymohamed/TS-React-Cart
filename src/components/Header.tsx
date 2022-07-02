@@ -5,10 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { RiShoppingCartLine, RiHeartLine } from "react-icons/ri";
 import { FiSearch } from "react-icons/fi";
 // redux
-import { selectData } from "../redux/counter/dataSlice";
 import { useAppSelector } from "../redux/app/hooks";
+import { selectData } from "../redux/counter/dataSlice";
+import { choicesData } from "../redux/counter/userChoicesSlice";
 // interface
-import { DataItem } from "../models";
+import { DataItem, CountOption } from "../models";
 // layout
 import { ItemsSearch } from "./layout/ItemsSearch";
 
@@ -17,11 +18,18 @@ const { useState, useTransition, useEffect } = React;
 
 export const Header: React.FC = () => {
   let navigate = useNavigate();
+  const QUANTITY_ZERO = 0 as number;
 
   const { data } = useAppSelector(selectData);
+  const { cart, heart } = useAppSelector(choicesData);
+
   const [search, setSearch] = useState<string>("");
   const [filterTerm, setFilterTerm] = useState<DataItem[]>();
   const [isPending, startTransition] = useTransition();
+  const [countOption, setCountOption] = useState<CountOption>({
+    countInCart: 0,
+    countInHeard: 0,
+  });
 
   const handelSearch = (e: {
     target: { value: React.SetStateAction<string> };
@@ -29,9 +37,11 @@ export const Header: React.FC = () => {
     startTransition(() => setSearch(e.target.value));
   };
 
-  useEffect(() => {
-    // if (search) return;
+  const handelClickSearch = () => {
+    navigate(`/search/products/all/?=${search}`);
+  };
 
+  useEffect(() => {
     const filterSearch = data.filter((item: DataItem) => {
       return (
         item.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -41,9 +51,16 @@ export const Header: React.FC = () => {
     setFilterTerm(filterSearch);
   }, [data, search]);
 
-  const handelClickSearch = () => {
-    navigate(`/search/products/all/?=${search}`);
-  };
+  useEffect(() => {
+    let count = 0 as number;
+
+    cart.map((item) => (count += item.quantity));
+
+    setCountOption({
+      countInHeard: heart.length,
+      countInCart: count,
+    });
+  }, [cart, heart]);
 
   return (
     <header className="header-page">
@@ -93,13 +110,17 @@ export const Header: React.FC = () => {
           <div className="header-heart">
             <Link to="/">
               <RiHeartLine size={32} color="#fff" />
-              {/* <span className='count-option'>0</span> */}
+              {countOption.countInHeard > QUANTITY_ZERO && (
+                <span className="count-option">{countOption.countInHeard}</span>
+              )}
             </Link>
           </div>
           <div className="header-cart">
-            <Link to="/">
+            <Link to="/cart">
               <RiShoppingCartLine size={32} color="#fff" />
-              {/* <span className='count-option'>0</span> */}
+              {countOption.countInCart > QUANTITY_ZERO && (
+                <span className="count-option">{countOption.countInCart}</span>
+              )}
             </Link>
           </div>
         </div>

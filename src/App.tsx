@@ -6,7 +6,7 @@ import { dataAsync, selectData } from "./redux/counter/dataSlice";
 
 import { useAppDispatch, useAppSelector } from "./redux/app/hooks";
 
-import { Loading } from "./components";
+import { Footer, Loading } from "./components";
 
 import Routers from "./router/Router";
 
@@ -27,6 +27,7 @@ function App() {
   return (
     <Router>
       <Routers />
+      <Footer />
     </Router>
   );
 }

@@ -9,6 +9,17 @@ export interface DataItem {
     rate: number;
     count: number;
   };
+  quantity: number;
 }
 
 export type DataCategories = string[];
+
+export interface CountOption {
+  countInCart: number;
+  countInHeard: number;
+}
+
+export interface ItemsCart {
+  product: DataItem;
+  quantity: number;
+}

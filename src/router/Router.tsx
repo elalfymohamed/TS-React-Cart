@@ -4,6 +4,7 @@ import { Home } from "../pages/Home";
 import { Product } from "../pages/Product";
 import { Products } from "../pages/Products";
 import { Search } from "../pages/Search";
+import { Cart } from "../pages/Cart";
 
 const Router: React.FC = () => {
   const routes = useRoutes([
@@ -22,6 +23,10 @@ const Router: React.FC = () => {
     {
       path: "/search/products/all/",
       element: <Search />,
+    },
+    {
+      path: "/cart",
+      element: <Cart />,
     },
   ]);
   return routes;
